@@ -19,7 +19,7 @@
 # Information on usage and execution is available in the README that comes with this file
 # This installation script comes WITHOUT any IBM software and must be installed by the user himself
 
-echo "Ubuntu 16.04 Installer for IBM notes 9.0.1"
+echo "Ubuntu patcher for IBM notes 9.0.1"
 
 if [ $(basename $1) == ibm-notes-9.0.1.i586.deb ]; then
 

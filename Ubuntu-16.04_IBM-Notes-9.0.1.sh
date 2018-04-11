@@ -71,6 +71,7 @@ if [ $(basename $1) == ibm-notes-9.0.1.i586.deb ]; then
 	sudo sed -i 's/libcupsys2/libcups2/g' ./temp_notes_unpacked/DEBIAN/control
 	sudo sed -i 's/ libgnome-desktop-2 | libgnome-desktop-2-7 | libgnome-desktop-2-11 | libgnome-desktop-2-17 | libgnome-desktop-3-2,//g' ./temp_notes_unpacked/DEBIAN/control
 	sudo sed -i 's/ libxp6,//g' ./temp_notes_unpacked/DEBIAN/control
+	sudo sed -i 's/libpng12-0/libpng16-16/g' ./temp_notes_unpacked/DEBIAN/control
 
 	sudo dpkg -b temp_notes_unpacked $1
 

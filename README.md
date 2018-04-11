@@ -1,4 +1,4 @@
-# Custom IBM Notes 9.0.1 patcher and installer for Ubuntu 16.04 systems
+# Custom IBM Notes 9.0.1 patcher and installer for Ubuntu systems
 
 IBM Notes has been available to the Linux Operating System since 2007, and has been out as a Ubuntu compatible debian package since 2008.
 

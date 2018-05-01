@@ -6,9 +6,9 @@ A simple patcher script that fixes broken dependencies required by the IBM Notes
 
 Unfortunately Ubuntu has a tendency to deprecate a variety of packages with each major update. Packages that aren't distributed by Ubuntu's aptitude package manager, such as the IBM Notes Debian package, may suffer badly from these changes as they often depend on certain packages.
 
-Fortunately enough it is possible to get IBM Notes running after a slight modification of the deb package.
+Fortunately enough it is possible to get IBM Notes running after a slight modification to the deb package.
 
-As nobody likes to manually patch the packages dependency list, I have decided to write a small script that applies the necessary patches to the package, and then install it.
+As nobody likes to manually patch the packages dependency list, I have decided to write a small script that applies the necessary patches to the package, and then installs it.
 
 ## Usage
 
@@ -23,7 +23,7 @@ Before you start, ensure that you have :
 
 #### GUI
 
-To install IBM Notes 9.0.1 via graphical user interface such as an GUI file manager and a simple drag and drop, proceed with the following steps :
+To install IBM Notes 9.0.1 via a graphical user interface such as an GUI file manager, proceed with the following steps :
 
 1. Extract the IBM deb tar to any directory
 2. To keep things simpler, copy the Ubuntu_IBM-Notes-9.0.1.sh installation script into the the extracted directory

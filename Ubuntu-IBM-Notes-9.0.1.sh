@@ -49,8 +49,7 @@ fi
 
 echo "Installing necessary packages before installation"
 
-sudo apt-get install libbonobo2-0 libbonoboui2-0 libgconf2-4 libgnomeui-0 libjpeg62 gdebi
-sudo apt-get install libgnome-desktop-*
+sudo apt-get install libbonobo2-0 libbonoboui2-0 libgconf2-4 libgnomeui-0 libjpeg62 gdebi gtk2-engines-pixbuf:i386 libgnome-desktop-*
 
 echo "Getting necessary unsupported/unofficial dependencies"
 
@@ -92,6 +91,7 @@ sleep 5
 
 sudo dpkg -X $1 ./temp_notes_unpacked
 sudo dpkg -e $1 ./temp_notes_unpacked/DEBIAN
+sudo sed -i 's/ gdb,//g' ./temp_notes_unpacked/DEBIAN/control
 sudo sed -i 's/libcupsys2/libcups2/g' ./temp_notes_unpacked/DEBIAN/control
 sudo sed -i 's/ libgnome-desktop-2 | libgnome-desktop-2-7 | libgnome-desktop-2-11 | libgnome-desktop-2-17 | libgnome-desktop-3-2,//g' ./temp_notes_unpacked/DEBIAN/control
 sudo sed -i 's/ libxp6,//g' ./temp_notes_unpacked/DEBIAN/control

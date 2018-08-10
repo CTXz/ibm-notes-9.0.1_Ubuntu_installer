@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Custom IBM Notes 9.0.1 patcher and installer for Ubuntu 16.04 systems
+# Custom IBM Notes 9.0.1 patcher and installer for Ubuntu 16.04+ systems
 
 # Information on usage and execution is available in the README that comes with this file
 # This installation script comes WITHOUT any IBM software and must be installed by the user himself

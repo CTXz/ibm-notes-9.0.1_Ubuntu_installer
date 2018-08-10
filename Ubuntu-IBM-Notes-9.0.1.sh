@@ -19,6 +19,19 @@
 # Information on usage and execution is available in the README that comes with this file
 # This installation script comes WITHOUT any IBM software and must be installed by the user himself
 
+# Package dependencies
+DEPENDENCIES=\
+(																																			\
+	gdebi 																															\
+	libjpeg62																												 		\
+	libgconf2-4 																												\
+	libatk-adaptor:i386 																								\
+	libgail-common:i386 																								\
+	libbonobo2-0 libbonoboui2-0 																				\
+	libgnomeui-0 libgnome-desktop-* gnome-themes-extra:i386 						\
+	gtk2-engines-pixbuf:i386 ibus-gtk:i386 libcanberra-gtk-module:i386	\
+)
+
 function usage() {
 	echo
 	echo "Usage: Ubuntu-IBM-Notes-9.0.1.sh [-h | --help] package"
@@ -49,7 +62,7 @@ fi
 
 echo "Installing necessary packages before installation"
 
-sudo apt-get install libbonobo2-0 libbonoboui2-0 libgconf2-4 libgnomeui-0 libjpeg62 gdebi gtk2-engines-pixbuf:i386 libgnome-desktop-*
+sudo apt-get install ${DEPENDENCIES[*]}
 
 echo "Getting necessary unsupported/unofficial dependencies"
 

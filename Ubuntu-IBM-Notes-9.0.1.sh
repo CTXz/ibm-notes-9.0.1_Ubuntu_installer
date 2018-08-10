@@ -21,15 +21,15 @@
 
 # Package dependencies
 DEPENDENCIES=\
-(																																			\
-	gdebi 																															\
-	libjpeg62																												 		\
-	libgconf2-4 																												\
-	libatk-adaptor:i386 																								\
-	libgail-common:i386 																								\
-	libbonobo2-0 libbonoboui2-0 																				\
-	libgnomeui-0 libgnome-desktop-* gnome-themes-extra:i386 						\
-	gtk2-engines-pixbuf:i386 ibus-gtk:i386 libcanberra-gtk-module:i386	\
+(																																			    	\
+	"gdebi" 																															  	\
+	"libjpeg62"																												 		  	\
+	"libgconf2-4" 																												  	\
+	"libatk-adaptor:i386" 																								  	\
+	"libgail-common:i386" 																								  	\
+	"libbonobo2-0" "libbonoboui2-0" 																					\
+	"libgnomeui-0" "libgnome-desktop-*" "gnome-themes-extra:i386" 						\
+	"gtk2-engines-pixbuf:i386" "ibus-gtk:i386" "libcanberra-gtk-module:i386"	\
 )
 
 function usage() {
@@ -62,7 +62,9 @@ fi
 
 echo "Installing necessary packages before installation"
 
-sudo apt-get install ${DEPENDENCIES[*]}
+set -f
+sudo apt install "${DEPENDENCIES[@]}"
+set +f
 
 echo "Getting necessary unsupported/unofficial dependencies"
 

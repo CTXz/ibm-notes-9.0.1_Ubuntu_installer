@@ -1,0 +1,10 @@
+# top-most EditorConfig file
+root = true
+
+# Default
+[*]
+end_of_line = lf
+insert_final_newline = true
+indent_style = tab
+indent_size = 2
+charset = utf-8

@@ -21,7 +21,7 @@
 
 # Package dependencies
 DEPENDENCIES=\
-(																																			    	\
+(																																			    \
 	"gdebi" 																															  	\
 	"libjpeg62"																												 		  	\
 	"libgconf2-4" 																												  	\

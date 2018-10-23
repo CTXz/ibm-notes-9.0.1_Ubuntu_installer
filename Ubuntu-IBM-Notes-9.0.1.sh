@@ -127,4 +127,8 @@ sudo gdebi $1
 
 cd ../
 
-echo "Successfully installed IBM Notes 9.0.1"
+if [ -f /opt/ibm/notes/notes2 ]; then
+	echo "Successfully installed IBM Notes 9.0.1"
+else
+	echo "Failed to install IBM Notes 9.0.1!"
+fi

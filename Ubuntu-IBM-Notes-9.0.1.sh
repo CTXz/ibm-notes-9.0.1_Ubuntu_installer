@@ -43,6 +43,8 @@ function usage() {
 	echo
 }
 
+# Test args
+
 if [ -z "$1" ]; then
 	echo
 	echo "No package specified!"
@@ -60,10 +62,16 @@ if [ -z "$(dpkg-deb -I "$1" | grep -oP "Package: ibm-notes")" ]; then
 	exit -1
 fi
 
+# Check script is being executed with root rights
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
 echo "Installing necessary packages before installation"
 
 set -f
-sudo apt install "${DEPENDENCIES[@]}"
+apt install "${DEPENDENCIES[@]}"
 set +f
 
 echo "Getting necessary unsupported/unofficial dependencies"
@@ -73,8 +81,8 @@ tmp_install_directory="$(mktemp -d)"
 wget http://security.ubuntu.com/ubuntu/pool/universe/g/gnome-desktop/libgnome-desktop-2-17_2.32.1-2ubuntu1_amd64.deb -P "$tmp_install_directory"/
 wget http://launchpadlibrarian.net/183708483/libxp6_1.0.2-2_amd64.deb -P "$tmp_install_directory"/
 
-sudo gdebi "$tmp_install_directory"/libgnome-desktop-2-17_2.32.1-2ubuntu1_amd64.deb
-if sudo apt-get -qq install libgnome-desktop-2-17; then
+gdebi "$tmp_install_directory"/libgnome-desktop-2-17_2.32.1-2ubuntu1_amd64.deb
+if apt-get -qq install libgnome-desktop-2-17; then
 	echo "libgnome-desktop-2-17 : successfully installed"
 else
 	echo "libgnome-desktop-2-17 : installation unsuccessful"
@@ -82,8 +90,8 @@ else
 	exit 1
 fi
 
-sudo gdebi "$tmp_install_directory"/libxp6_1.0.2-2_amd64.deb
-if sudo apt-get -qq install libxp6; then
+gdebi "$tmp_install_directory"/libxp6_1.0.2-2_amd64.deb
+if apt-get -qq install libxp6; then
 	echo "libxp6 : successfully installed"
 else
 	echo "libxp6 : installation unsuccessful"
@@ -97,15 +105,15 @@ echo "This may take a while depending on your hardware"
 # Give user time to read echo
 sleep 5
 
-sudo dpkg -X $1 "$tmp_install_directory"/deb
-sudo dpkg -e $1 "$tmp_install_directory"/deb/DEBIAN
-sudo sed -i 's/ gdb,//g' "$tmp_install_directory"/deb/DEBIAN/control
-sudo sed -i 's/libcupsys2/libcups2/g' "$tmp_install_directory"/deb/DEBIAN/control
-sudo sed -i 's/ libgnome-desktop-2 | libgnome-desktop-2-7 | libgnome-desktop-2-11 | libgnome-desktop-2-17 | libgnome-desktop-3-2,//g' "$tmp_install_directory"/deb/DEBIAN/control
-sudo sed -i 's/ libxp6,//g' "$tmp_install_directory"/deb/DEBIAN/control
-sudo sed -i 's/libpng12-0/libpng16-16/g' "$tmp_install_directory"/deb/DEBIAN/control
+dpkg -X $1 "$tmp_install_directory"/deb
+dpkg -e $1 "$tmp_install_directory"/deb/DEBIAN
+sed -i 's/ gdb,//g' "$tmp_install_directory"/deb/DEBIAN/control
+sed -i 's/libcupsys2/libcups2/g' "$tmp_install_directory"/deb/DEBIAN/control
+sed -i 's/ libgnome-desktop-2 | libgnome-desktop-2-7 | libgnome-desktop-2-11 | libgnome-desktop-2-17 | libgnome-desktop-3-2,//g' "$tmp_install_directory"/deb/DEBIAN/control
+sed -i 's/ libxp6,//g' "$tmp_install_directory"/deb/DEBIAN/control
+sed -i 's/libpng12-0/libpng16-16/g' "$tmp_install_directory"/deb/DEBIAN/control
 
-sudo dpkg -b "$tmp_install_directory"/deb $1
+dpkg -b "$tmp_install_directory"/deb $1
 
 echo "Done patching"
 
@@ -116,7 +124,7 @@ echo "Installing IBM notes 9.0.1"
 # Give user time to read echo
 sleep 5
 
-sudo gdebi $1
+gdebi $1
 
 cd ../
 

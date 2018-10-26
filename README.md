@@ -35,17 +35,17 @@ To install IBM Notes 9.0.1 via a graphical user interface such as an GUI file ma
 
 Example
 ```
-tar xvf NOTES_9.0.1_LINUX_DI_EN.tar -C IBM
+$ tar xvf NOTES_9.0.1_LINUX_DI_EN.tar -C IBM
 ```
 
-2. Run the installation script
+2. Run the installation script (as root)
 
 **Syntax:**
 ```
-Ubuntu_IBM-Notes-9.0.1.sh <path to ibm notes deb package>
+# Ubuntu_IBM-Notes-9.0.1.sh <path to ibm notes deb package>
 ```
 
 **Example:**
 ```
-bash Ubuntu_IBM-Notes-9.0.1.sh IBM/ibm-notes-9.0.1.i586.deb
+sudo bash Ubuntu_IBM-Notes-9.0.1.sh IBM/ibm-notes-9.0.1.i586.deb
 ```

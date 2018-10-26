@@ -78,25 +78,30 @@ echo "Getting necessary unsupported/unofficial dependencies"
 
 tmp_install_directory="$(mktemp -d)"
 
-wget http://security.ubuntu.com/ubuntu/pool/universe/g/gnome-desktop/libgnome-desktop-2-17_2.32.1-2ubuntu1_amd64.deb -P "$tmp_install_directory"/
-wget http://launchpadlibrarian.net/183708483/libxp6_1.0.2-2_amd64.deb -P "$tmp_install_directory"/
+if ! apt-get -qq install libgnome-desktop-2-17; then
+	wget http://security.ubuntu.com/ubuntu/pool/universe/g/gnome-desktop/libgnome-desktop-2-17_2.32.1-2ubuntu1_amd64.deb -P "$tmp_install_directory"/
+	gdebi "$tmp_install_directory"/libgnome-desktop-2-17_2.32.1-2ubuntu1_amd64.deb
 
-gdebi "$tmp_install_directory"/libgnome-desktop-2-17_2.32.1-2ubuntu1_amd64.deb
-if apt-get -qq install libgnome-desktop-2-17; then
-	echo "libgnome-desktop-2-17 : successfully installed"
-else
-	echo "libgnome-desktop-2-17 : installation unsuccessful"
-	rm -rf "$tmp_install_directory"
-	exit 1
+	if apt-get -qq install libgnome-desktop-2-17; then
+		echo "libgnome-desktop-2-17 : successfully installed"
+	else
+		echo "libgnome-desktop-2-17 : installation unsuccessful"
+		rm -rf "$tmp_install_directory"
+		exit 1
+	fi
 fi
 
-gdebi "$tmp_install_directory"/libxp6_1.0.2-2_amd64.deb
-if apt-get -qq install libxp6; then
-	echo "libxp6 : successfully installed"
-else
-	echo "libxp6 : installation unsuccessful"
-	rm -rf "$tmp_install_directory"
-	exit 1
+if ! apt-get -qq install libxp6; then
+	wget http://launchpadlibrarian.net/183708483/libxp6_1.0.2-2_amd64.deb -P "$tmp_install_directory"/
+	gdebi "$tmp_install_directory"/libxp6_1.0.2-2_amd64.deb
+
+	if apt-get -qq install libxp6; then
+		echo "libxp6 : successfully installed"
+	else
+		echo "libxp6 : installation unsuccessful"
+		rm -rf "$tmp_install_directory"
+		exit 1
+	fi
 fi
 
 echo "Patching the ibm-notes-9.0.1 package"

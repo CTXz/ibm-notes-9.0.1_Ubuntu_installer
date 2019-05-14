@@ -24,7 +24,7 @@ DEPENDENCIES=\
 (																																			    \
 	"gdebi" 																															  	\
 	"libjpeg62"																												 		  	\
-	"libgconf2-4" 																												  	\
+	"libgconf-2-4" 																												  	\
 	"libatk-adaptor:i386" 																								  	\
 	"libgail-common:i386" 																								  	\
 	"libbonobo2-0" "libbonoboui2-0" 																					\
@@ -117,6 +117,7 @@ sed -i 's/libcupsys2/libcups2/g' "$tmp_install_directory"/deb/DEBIAN/control
 sed -i 's/ libgnome-desktop-2 | libgnome-desktop-2-7 | libgnome-desktop-2-11 | libgnome-desktop-2-17 | libgnome-desktop-3-2,//g' "$tmp_install_directory"/deb/DEBIAN/control
 sed -i 's/ libxp6,//g' "$tmp_install_directory"/deb/DEBIAN/control
 sed -i 's/libpng12-0/libpng16-16/g' "$tmp_install_directory"/deb/DEBIAN/control
+sed -i 's/libgconf2-4/libgconf-2-4/g' "$tmp_install_directory"/deb/DEBIAN/control
 
 dpkg -b "$tmp_install_directory"/deb $1
 
